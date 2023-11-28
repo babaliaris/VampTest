@@ -1,32 +1,26 @@
 #include <VampTest/VampTest.h>
 
-void func1(void *node, void *framework)
+
+VAMP_TEST(Suite1, Test123456789)
 {
-    printf("func1\n");
+    VAMP_EXPECT(1 == 2, "1 should not be %s", "equal to 2")
 }
 
-void func2(void *node, void *framework)
+
+VAMP_TEST(Suite1, Test2)
 {
-    printf("func2\n");
+    VAMP_EXPECT(1 == 1, "1 should not be %s", "equal to true")
 }
 
-int main()
+
+VAMP_TEST(Suite2, Test1)
 {
-    VampTestFramework *framework = VampNewTestFramework();
-
-    VampTestNode *test1 = VampNewTestNode("suite1", "test1");
-    VampTestNode *test2 = VampNewTestNode("suite2", "test2");
-
-    test1->m_func = func1;
-    test2->m_func = func2;
-
-    VampAppendTest(framework, test1);
-    VampAppendTest(framework, test2);
-
-
-    VampRunAllTests(framework);
-
-    VampDestroyTestFramework(framework);
-
-    return 0;
+    VAMP_EXPECT(1 == 1, "1 should not be %s", "equal to true")
 }
+
+
+VAMP_TEST_FRAMEWORK(
+    VAMP_REGISTER_TEST(Suite1, Test123456789);
+    VAMP_REGISTER_TEST(Suite1, Test2);
+    VAMP_REGISTER_TEST(Suite2, Test1);
+)
