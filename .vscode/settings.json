@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "chrono": "c",
+        "typeinfo": "c",
+        "vamptest.h": "c"
+    }
+}
