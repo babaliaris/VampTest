@@ -88,6 +88,15 @@ use `VAMP_REGISTER_TEST(suite_name, test_name)` **INSIDE** the `VAMP_TEST_FRAMEW
 
 use `VAMP_DECLARE_TEST(suite_name, test_name)`  **BEFORE** the `VAMP_TEST_FRAMEWORK(registers)` macro in order to declare tests that have been defined in other .c files than the main.c file.
 
+#### ASSERT Macros:
+Use `VAMP_EXPECT(cond, __VA_ARGS__)` **INSIDE** a test to assert it. If `cond` is `false`, the test will fail. The rest of the arguments are `printf()` formatted.
+
+Example:
+```C
+VAMP_EXPECT(myFuncAdd(1, 2) == 2, "1 + 2 should be equal to 3. The value return from myFuncAdd(1, 2) = %d", myFuncAdd(1, 2)); //This will FAIL.
+VAMP_EXPECT(myFuncAdd(1, 2) == 3, "1 + 2 should be equal to 3"); //This will PASS.
+```
+
 
 ## How to Run:
 Once you have compiled your project, just run the executable (ConsoleApp) that you have created.
