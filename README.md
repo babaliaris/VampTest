@@ -56,19 +56,19 @@ Simple Example Usage:
 
 VAMP_TEST(Suite1, Test1)
 {
-    VAMP_EXPECT(1 == 2, "1 should not be %s", "equal to 2")
+    VAMP_EXPECT(1 == 2, "1 should not be %s", "equal to 2") //This will FAIL the test.
 }
 
 
 VAMP_TEST(Suite1, Test2)
 {
-    VAMP_EXPECT(1 == 1, "1 should not be %s", "equal to true")
+    VAMP_EXPECT(1 == 1, "1 should be equal to 1") //This will PASS the test
 }
 
 
 VAMP_TEST(Suite2, Test1)
 {
-    VAMP_EXPECT(1 == 1, "1 should not be %s", "equal to true")
+    VAMP_EXPECT(1 == 1, "1 should be equal to 1") //This will PASS the test
 }
 
 
