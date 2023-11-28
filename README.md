@@ -89,7 +89,7 @@ use `VAMP_REGISTER_TEST(suite_name, test_name)` **INSIDE** the `VAMP_TEST_FRAMEW
 use `VAMP_DECLARE_TEST(suite_name, test_name)`  **BEFORE** the `VAMP_TEST_FRAMEWORK(registers)` macro in order to declare tests that have been defined in other .c files than the main.c file.
 
 #### ASSERT Macros:
-Use `VAMP_EXPECT(cond, __VA_ARGS__)` **INSIDE** a test to assert it. If `cond` is `false`, the test will fail. The rest of the arguments are `printf()` formatted.
+Use `VAMP_EXPECT(cond, ...)` **INSIDE** a test to assert it. If `cond` is `false`, the test will fail. The rest of the arguments are `printf()` formatted.
 
 Example:
 ```C
