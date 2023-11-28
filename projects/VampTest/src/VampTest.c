@@ -4,8 +4,8 @@
 
 
 #define __VAMP_PRINT_TEST_PASSED_MSG__\
-    printf("%sTEST: [%s.%s] %50s\n",\
-            VAMP_CLI_COLOR_GREEN, current->m_suite_name, current->m_name, "[PASS]");\
+    printf("%sTEST: [%s.%s]  ------------------------------------------------------------------------------> [PASS]\n",\
+            VAMP_CLI_COLOR_GREEN, current->m_suite_name, current->m_name);\
     printf(VAMP_CLI_COLOR_RESET);
 
 

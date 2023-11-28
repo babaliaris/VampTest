@@ -85,8 +85,8 @@ void VampRunAllTests(VampTestFramework *test_framework, int argc, char **argv);
         VampTestFramework *__vamp_Framework_Casted__ = (VampTestFramework *)__vamp_Framework__;\
         __vamp_Framework_Casted__->m_number_of_failures++;\
         __vamp_Node_Casted__->m_failed = 1;\
-        printf("%sTEST: [%s.%s] %50s\n", \
-            VAMP_CLI_COLOR_RED, __vamp_Node_Casted__->m_suite_name, __vamp_Node_Casted__->m_name, "[FAILED]");\
+        printf("%sTEST: [%s.%s] ------------------------------------------------------------------------------> [FAILED]\n", \
+            VAMP_CLI_COLOR_RED, __vamp_Node_Casted__->m_suite_name, __vamp_Node_Casted__->m_name);\
         printf("@   : [%s:%d]\n", __FILE__, __LINE__);\
         printf("%s\tExpected: %s\n", VAMP_CLI_COLOR_YELLOW, #cond);\
         printf("%s\tMessage : ", VAMP_CLI_COLOR_CYAN);\
