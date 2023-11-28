@@ -1,0 +1,101 @@
+# VampTest
+#### A simple C testing framework for my VampEngine project.
+
+## How to Compile:
+From now on, I will reference the root directory of this repo using `<VampTestRepo>`
+
+#### Using [Premake5](https://premake.github.io/):
+Create a [premake5.lua workspace](https://premake.github.io/docs/Your-First-Script) and just include `<VampTestRepo>/projects/VampTest`.
+
+Also, you have to link the *VampTest* project to your **ConsoleApp** project, since *VampTest* is compiled as a [StaticLib](https://premake.github.io/docs/kind/).
+
+Also, **MAKE SURE** you add in your [includedirs](https://premake.github.io/docs/includedirs/) `<VampTestRepo>/projects/VampTest/src/include`. Every header inclusion is absolute to `VampTest`.
+```lua
+workspace "MyWorkspace"
+  platforms "x64"
+  configurations {"debug", "dist", "release"}
+
+  --Replace <VampTestRepo> with the root directory of this repo in the location where you cloned it.
+  include "<VampTestRepo>/projects/VampTest"
+
+  --Link VampTest in your project.
+  project "Tests"
+    kind "ConsoleApp"
+    ...
+    includedirs {
+      "<VampTestRepo>/projects/VampTest/src/include",
+      other...
+    }
+
+    links {
+      "VampTest",
+      ...other
+    }
+```
+
+#### Using your own IDE or compiler configurations:
+This VampTest project has only two files:
+
+`<VampTestRepo>/projects/VampTest/src/VampTest.c`
+
+`<VampTestRepo>/projects/VampTest/src/include/VampTest/VampTest.h`
+
+Just compile the .c file and DO NOT FORGET to specify the include directory: `<VampTestRepo>/projects/VampTest/src/include`
+in your compiler or IDE settings, because the .c file includes the header file using absolute paths:
+```C
+//<VampTestRepo>/projects/VampTest/src/VampTest.c
+#include <VampTest/VampTest.h>
+```
+
+## How to Use:
+Simple Example Usage:
+```C
+//My main.c file
+#include <VampTest/VampTest.h>
+
+
+VAMP_TEST(Suite1, Test1)
+{
+    VAMP_EXPECT(1 == 2, "1 should not be %s", "equal to 2")
+}
+
+
+VAMP_TEST(Suite1, Test2)
+{
+    VAMP_EXPECT(1 == 1, "1 should not be %s", "equal to true")
+}
+
+
+VAMP_TEST(Suite2, Test1)
+{
+    VAMP_EXPECT(1 == 1, "1 should not be %s", "equal to true")
+}
+
+
+VAMP_TEST_FRAMEWORK(
+    VAMP_REGISTER_TEST(Suite1, Test123456789);
+    VAMP_REGISTER_TEST(Suite1, Test2);
+    VAMP_REGISTER_TEST(Suite2, Test1);
+)
+```
+
+### Macros:
+Use `VAMP_TEST(suite_name, test_name)` to define a test function. The combination of `suite_name` and `test_name` must be **unique** across the entire project!!!
+
+Use `VAMP_TEST_FRAMEWORK(registers)` to initialize the testing framework **ONLY in one .c file!!!**
+
+use `VAMP_REGISTER_TEST(suite_name, test_name)` **INSIDE** the `VAMP_TEST_FRAMEWORK(registers)` macro, to register a test. Unfortunately, you have to register for every test manually.
+
+use `VAMP_DECLARE_TEST(suite_name, test_name)`  **BEFORE** the `VAMP_TEST_FRAMEWORK(registers)` macro in order to declare tests that have been defined in other .c files than the main.c file.
+
+
+## How to Run:
+Once you have compiled your project, just run the executable (ConsoleApp) that you have created.
+This will run all the tests.
+
+### How to run specific tests:
+Use the `--filter` option as follows:
+
+`./my_executable --filter SuiteName.Testname` This will run only ONE test, the test that you specified in the filter.
+
+`./my_executable --filter SuiteName` This will run ALL the tests that share the SAME SuiteName.
