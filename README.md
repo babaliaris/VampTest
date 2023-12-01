@@ -53,13 +53,13 @@ Simple Example Usage :
 //My main.c file
 #include <VampTest/VampTest.h>
 
-//This MUST be defined but you, else you gonna get a link error.
+//This MUST be defined by you, or else you gonna get a link error.
 void VampRunBeforeAllTests()
 {
     printf("Starting Tests...\n\n");
 }
 
-//This MUST be defined but you, else you gonna get a link error.
+//This MUST be defined by you, or else you gonna get a link error.
 void VampRunAfterAllTests()
 {
     printf("Finished running tests.\n\n");
