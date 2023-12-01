@@ -48,11 +48,22 @@ in your compiler or IDE settings, because the .c file includes the header file u
 ```
 
 ## How to Use:
-Simple Example Usage:
+Simple Example Usage :
 ```C
 //My main.c file
 #include <VampTest/VampTest.h>
 
+//This MUST be defined but you, else you gonna get a link error.
+void VampRunBeforeAllTests()
+{
+    printf("Starting Tests...\n\n");
+}
+
+//This MUST be defined but you, else you gonna get a link error.
+void VampRunAfterAllTests()
+{
+    printf("Finished running tests.\n\n");
+}
 
 VAMP_TEST(Suite1, Test1)
 {
