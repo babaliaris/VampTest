@@ -55,6 +55,10 @@ void VampAppendTest(VampTestFramework *test_framework, VampTestNode *test_node);
 void VampRunAllTests(VampTestFramework *test_framework, int argc, char **argv);
 
 
+void VampRunBeforeAllTests();
+void VampRunAfterAllTests();
+
+
 #define VAMP_TEST(suite_name, test_name)\
     void suite_name##_##test_name(void *__vamp_Node__, void *__vamp_Framework__)
 
@@ -72,7 +76,9 @@ void VampRunAllTests(VampTestFramework *test_framework, int argc, char **argv);
     {\
         VampTestFramework *__Vamp_Actual_Test_Framework__ = VampNewTestFramework();\
         registers\
+        VampRunBeforeAllTests();\
         VampRunAllTests(__Vamp_Actual_Test_Framework__, argc, argv);\
+        VampRunAfterAllTests();\
         VampDestroyTestFramework(__Vamp_Actual_Test_Framework__);\
         return 0;\
     }

@@ -1,5 +1,16 @@
 #include <VampTest/VampTest.h>
 
+void VampRunBeforeAllTests()
+{
+    printf("Starting Tests...\n\n");
+}
+
+
+void VampRunAfterAllTests()
+{
+    printf("Finished running tests.\n\n");
+}
+
 
 VAMP_TEST(Suite1, Test123456789)
 {
