@@ -1,6 +1,6 @@
 builds/
 obj/
-*.Makefile
+*Makefile
 
 #Visual Studio
 .vs/
